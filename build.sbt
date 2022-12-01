@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-ThisBuild / organization := "com.simplytyped"
+ThisBuild / organization := "org.mixql"
 ThisBuild / version := "0.8.3"
 
 lazy val root = (project in file("."))

@@ -101,7 +101,7 @@ object Antlr4Plugin extends AutoPlugin {
     antlr4TreatWarningsAsErrors := false
   )) ++ Seq(
     ivyConfigurations += Antlr4,
-    Compile / managedSourceDirectories += (Antlr4 / javaSource).value,
+//    Compile / managedSourceDirectories += (Antlr4 / javaSource).value,
     Compile / sourceGenerators += (Antlr4 / antlr4Generate).taskValue,
     watchSources += new Source(sourceDirectory.value, "*.g4", HiddenFileFilter),
     cleanFiles += (Antlr4 / javaSource).value,
