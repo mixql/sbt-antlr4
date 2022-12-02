@@ -17,7 +17,7 @@
  */
 
 ThisBuild / organization := "org.mixql"
-ThisBuild / version := "0.8.3"
+ThisBuild / version := "0.8.4"
 
 lazy val root = (project in file("."))
   .enablePlugins(SbtPlugin)
