@@ -17,7 +17,7 @@
  */
 
 ThisBuild / organization := "org.mixql"
-ThisBuild / version := "0.8.4"
+ThisBuild / version := "0.8.5"
 
 lazy val root = (project in file("."))
   .enablePlugins(SbtPlugin)
@@ -32,25 +32,30 @@ lazy val root = (project in file("."))
 
 ThisBuild / publishTo := {
   val nexus = "https://s01.oss.sonatype.org/"
-  if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
+  if (isSnapshot.value)
+    Some("snapshots" at nexus + "content/repositories/snapshots")
   else Some("releases" at nexus + "service/local/staging/deploy/maven2")
 }
 ThisBuild / publishMavenStyle := true
-ThisBuild / credentials += Credentials(Path.userHome / ".sbt" / "sonatype_credentials")
+ThisBuild / credentials += Credentials(
+  Path.userHome / ".sbt" / "sonatype_credentials"
+)
 
 ThisBuild / developers := List(
   Developer(
-    id    = "ihji",
-    name  = "Heejong Lee",
+    id = "ihji",
+    name = "Heejong Lee",
     email = "@heejongl",
-    url   = url("https://github.com/ihji")
+    url = url("https://github.com/ihji")
   )
 )
-ThisBuild / licenses := List("Apache 2" -> new URL("http://www.apache.org/licenses/LICENSE-2.0.txt"))
+ThisBuild / licenses := List(
+  "Apache 2" -> new URL("http://www.apache.org/licenses/LICENSE-2.0.txt")
+)
 ThisBuild / homepage := Some(url("https://github.com/ihji/sbt-antlr4"))
 ThisBuild / scmInfo := Some(
   ScmInfo(
-    url("https://github.com/ihji/sbt-antlr4"),
-    "scm:git@github.com:ihji/sbt-antlr4.git"
+    url("https://github.com/mixql/sbt-antlr4"),
+    "scm:git@github.com:mixql/sbt-antlr4.git"
   )
 )

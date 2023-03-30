@@ -30,19 +30,19 @@ Now, whenever you invoke `sbt compile` the ANTLR artifacts will be written to
 
 You can select an antl4 version with:
 
-    antlr4Version in Antlr4 := "4.8-1" // default: 4.8-1
+    Antlr4 / antlr4Version := "4.8-1" // default: 4.8-1
 
 `-package` option can be defined by the following setting:
 
-    antlr4PackageName in Antlr4 := Some("com.simplytyped")
+    Antlr4 / antlr4PackageName := Some("com.simplytyped")
 
 You can also adjust `-listener`, `-no-listener`, `-visitor`, `-no-visitor`, `-Werror` options:
 
-    antlr4GenListener in Antlr4 := true // default: true
+    Antlr4 / antlr4GenListener := true // default: true
 
-    antlr4GenVisitor in Antlr4 := false // default: false
+    Antlr4 / antlr4GenVisitor:= false // default: false
 
-    antlr4TreatWarningsAsErrors in Antlr4 := true // default: false
+    Antlr4 / antlr4TreatWarningsAsErrors := true // default: false
  
 ## License
 
