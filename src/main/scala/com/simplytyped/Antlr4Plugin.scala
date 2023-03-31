@@ -118,7 +118,8 @@ object Antlr4Plugin extends AutoPlugin {
   override def projectSettings = inConfig(Antlr4)(
     Seq(
       sourceDirectory := (Compile / sourceDirectory).value / "antlr4",
-      javaSource := baseDirectory.value / "src" / "main" / "java",
+//      javaSource := baseDirectory.value / "src" / "main" / "java",
+      javaSource := (Compile / javaSource).value,
       managedClasspath := Classpaths
         .managedJars(configuration.value, classpathTypes.value, update.value),
       antlr4Version := "4.8-1",
