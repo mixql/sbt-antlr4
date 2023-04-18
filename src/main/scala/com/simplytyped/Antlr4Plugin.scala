@@ -40,6 +40,7 @@ object Antlr4Plugin extends AutoPlugin {
     val antlr4GenVisitor = settingKey[Boolean]("Generate visitor")
     val antlr4TreatWarningsAsErrors =
       settingKey[Boolean]("Treat warnings as errors when generating parser")
+    val antlr4FolderToClean = settingKey[File]("Folder to clean")
   }
 
   import autoImport._
@@ -76,15 +77,15 @@ object Antlr4Plugin extends AutoPlugin {
   }
 
   def runAntlr(
-    srcFiles: Set[File],
-    targetBaseDir: File,
-    classpath: Seq[File],
-    log: Logger,
-    packageName: Option[String],
-    listenerOpt: Boolean,
-    visitorOpt: Boolean,
-    warningsAsErrorOpt: Boolean
-  ) = {
+                srcFiles: Set[File],
+                targetBaseDir: File,
+                classpath: Seq[File],
+                log: Logger,
+                packageName: Option[String],
+                listenerOpt: Boolean,
+                visitorOpt: Boolean,
+                warningsAsErrorOpt: Boolean
+              ) = {
     val targetDir = packageName
       .map {
         _.split('.').foldLeft(targetBaseDir) {
@@ -118,7 +119,7 @@ object Antlr4Plugin extends AutoPlugin {
   override def projectSettings = inConfig(Antlr4)(
     Seq(
       sourceDirectory := (Compile / sourceDirectory).value / "antlr4",
-//      javaSource := baseDirectory.value / "src" / "main" / "java",
+      //      javaSource := baseDirectory.value / "src" / "main" / "java",
       javaSource := (Compile / javaSource).value,
       managedClasspath := Classpaths
         .managedJars(configuration.value, classpathTypes.value, update.value),
@@ -137,7 +138,7 @@ object Antlr4Plugin extends AutoPlugin {
     //    Compile / managedSourceDirectories += (Antlr4 / javaSource).value,
     Compile / sourceGenerators += (Antlr4 / antlr4Generate).taskValue,
     watchSources += new Source(sourceDirectory.value, "*.g4", HiddenFileFilter),
-    cleanFiles += (Antlr4 / javaSource).value,
+    cleanFiles += (Antlr4 / antlr4FolderToClean).value,
     libraryDependencies += (Antlr4 / antlr4BuildDependency).value,
     libraryDependencies += (Antlr4 / antlr4RuntimeDependency).value
   )
