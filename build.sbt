@@ -17,7 +17,7 @@
  */
 
 ThisBuild / organization := "org.mixql"
-ThisBuild / version := "0.8.7-SNAPSHOT"
+ThisBuild / version := "0.8.7"
 
 lazy val root = (project in file("."))
   .enablePlugins(SbtPlugin)
@@ -34,7 +34,7 @@ ThisBuild / publishTo := {
   val nexus = "https://s01.oss.sonatype.org/"
   if (isSnapshot.value)
     Some("snapshots" at nexus + "content/repositories/snapshots")
-  else Some("releases" at nexus + "service/local/staging/deploy/maven2")
+  else Some("releases" at nexus + "content/repositories/releases/")
 }
 ThisBuild / publishMavenStyle := true
 ThisBuild / credentials += Credentials(
